@@ -5,10 +5,16 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+
+import NuevoJuego.*;
+import JuegoAutomatico.VentanaJA;
+import Configuracion.VentanaConfig;
+
 public class Principal extends JFrame implements ActionListener{
     Color fondoc = new Color(79,201,247);
     JLabel titulo, imagenlados;
     JButton bnuevoj, bjuegoa, bconfig, btop5, bsalir; 
+    
     //CONSTRUCTOR
     public Principal(){
         //BOTÓN DE NUEVO JUEGO
@@ -101,19 +107,23 @@ public class Principal extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent ae) {
         //BOTÓN JUEGO NUEVO
         if (ae.getSource()==bnuevoj) {
-            
+            VentanaNJ vnj = new VentanaNJ();
+            this.dispose();
         }
         //BOTON JUEGO AUTOMÁTICO
         else if (ae.getSource()==bjuegoa) {
-            
+            VentanaJA vja = new VentanaJA();
+            this.dispose();
         }
         //BOTON TOP 5
         else if (ae.getSource()==btop5) {
-            
+            VentanaTop5 vt5 = new VentanaTop5();
+            this.dispose();
         }
         //BOTON CONFIGURACIÓN
         else if (ae.getSource()==bconfig) {
-            
+            VentanaConfig vc = new VentanaConfig();
+            this.dispose();            
         }
         //BOTON SALIR
         else if (ae.getSource()==bsalir) {
