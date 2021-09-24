@@ -1,15 +1,86 @@
 package JuegoAutomatico;
 
+import Principal.Principal;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class VentanaJA extends JFrame implements ActionListener{
     Color fondoc = new Color(79,201,247);
+    TextArea ta;
+    JLabel titulo, ldisc, lcdisc, lmov, lcmov;
+    JButton biniciar, bregresar;
     
     //CONSTRUCTOR
-    public VentanaJA(){
+    public VentanaJA(){       
+        //LABEL DE TITULO
+        titulo = new JLabel("Juego Automático");
+        titulo.setFont(new Font("Century Gothic", Font.BOLD,30));
+        titulo.setBounds(370,20,300,35);
+        titulo.setVisible(true);
+        this.add(titulo);
+        
+        //LABEL DE DISCO
+        ldisc = new JLabel("Discos");
+        ldisc.setFont(new Font("Century Gothic", Font.BOLD,20));
+        ldisc.setBounds(130,80,100,30);
+        ldisc.setVisible(true);
+        this.add(ldisc);
+        
+        //LABEL DE CONTADOR DE DISCOS
+        lcdisc = new JLabel("3");
+        lcdisc.setFont(new Font("Century Gothic", Font.BOLD,20));
+        lcdisc.setBounds(155,110,100,30);
+        lcdisc.setVisible(true);
+        this.add(lcdisc);
+        
+        //LABEL DE MOVIMIENTOS
+        lmov = new JLabel("Movimientos");
+        lmov.setFont(new Font("Century Gothic", Font.BOLD,20));
+        lmov.setBounds(230,80,150,30);
+        lmov.setVisible(true);
+        this.add(lmov);
+        
+        //LABEL DE CONTADOR DE MOVIMIENTOS
+        lcmov = new JLabel("000");
+        lcmov.setFont(new Font("Century Gothic", Font.BOLD,20));
+        lcmov.setBounds(270, 110, 100, 30);
+        lcmov.setVisible(true);
+        this.add(lcmov);
+        
+        //TEXTAREA
+        ta = new TextArea();
+        ta.setBounds(100, 150, 800, 250);
+        ta.setVisible(true);
+        ta.setFont(new Font("Century Gothic", Font.PLAIN,15));
+        this.add(ta);
+        
+        //BOTON INICIAR
+        Image imgeb8 = new ImageIcon("Imagenes/Boton8.png").getImage();
+        ImageIcon b8 = new ImageIcon(imgeb8.getScaledInstance(140, 40, Image.SCALE_SMOOTH));
+        biniciar = new JButton(b8);
+        biniciar.setBorder(null);
+        biniciar.setLayout(null);
+        biniciar.setBounds(600,450, 140, 40);
+        biniciar.setVisible(true);
+        biniciar.addActionListener(this);
+        this.add(biniciar);
+        
+        //BOTON REGRESAR
+        Image imgeb9 = new ImageIcon("Imagenes/Boton9.png").getImage();
+        ImageIcon b9 = new ImageIcon(imgeb9.getScaledInstance(140, 40, Image.SCALE_SMOOTH));
+        bregresar = new JButton(b9);
+        bregresar.setBorder(null);
+        bregresar.setLayout(null);
+        bregresar.setBounds(800,450, 140, 40);
+        bregresar.setVisible(true);
+        bregresar.addActionListener(this);
+        this.add(bregresar);
+        
         //ICONO DE LA APLICACION
         setIconImage(new ImageIcon(getClass().getResource("torre.png")).getImage());
         
@@ -26,6 +97,9 @@ public class VentanaJA extends JFrame implements ActionListener{
     //METODOS ABSTRACTOS
     @Override
     public void actionPerformed(ActionEvent ae) {
-        
+        if (ae.getSource()== bregresar) {
+            Principal p = new Principal();
+            this.dispose();
+        }
     }    
 }

@@ -9,7 +9,7 @@ public class VentanaConfig extends JFrame implements ActionListener{
     Color fondoc = new Color(79,201,247);
     
     //CONSTRUCTOR
-    public VentanaConfig(){
+    public VentanaConfig(){        
         //ICONO DE LA APLICACION
         setIconImage(new ImageIcon(getClass().getResource("torre.png")).getImage());
         
