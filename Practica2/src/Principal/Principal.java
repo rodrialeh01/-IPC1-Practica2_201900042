@@ -59,10 +59,10 @@ public class Principal extends JFrame implements ActionListener{
         
         //BOTON CONFIGURACION
         Image imgeb5 = new ImageIcon("Imagenes/Boton5.png").getImage();
-        ImageIcon ib5 = new ImageIcon(imgeb5.getScaledInstance(100, 30, Image.SCALE_SMOOTH));
+        ImageIcon ib5 = new ImageIcon(imgeb5.getScaledInstance(140, 40, Image.SCALE_SMOOTH));
         bsalir = new JButton(ib5);
         bsalir.setLayout(null);
-        bsalir.setBounds(850,30, 100, 30);
+        bsalir.setBounds(800,30, 140, 40);
         bsalir.setVisible(true);
         bsalir.addActionListener(this);
         this.add(bsalir);
