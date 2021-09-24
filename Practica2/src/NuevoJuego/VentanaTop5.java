@@ -10,6 +10,9 @@ public class VentanaTop5 extends JFrame implements ActionListener{
     
     //CONSTRUCTOR
     public VentanaTop5(){
+        //ICONO DE LA APLICACION
+        setIconImage(new ImageIcon(getClass().getResource("torre.png")).getImage());
+        
         //VENTANA DEL JUEGO
         this.setTitle("Torres de Hanoi | Top 5");
         this.setBounds(200,100,1000,550);

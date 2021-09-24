@@ -92,6 +92,9 @@ public class Principal extends JFrame implements ActionListener{
         titulo.setVisible(true);
         this.add(titulo);
         
+        //ICONO DE LA APLICACION
+        setIconImage(new ImageIcon(getClass().getResource("torre.png")).getImage());
+        
         //VENTANA DEL MENU PRINCIPAL
         this.setTitle("Torres de Hanoi | Menú Principal");
         this.setBounds(200,100,1000,550);

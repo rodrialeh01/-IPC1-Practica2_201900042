@@ -10,6 +10,9 @@ public class VentanaConfig extends JFrame implements ActionListener{
     
     //CONSTRUCTOR
     public VentanaConfig(){
+        //ICONO DE LA APLICACION
+        setIconImage(new ImageIcon(getClass().getResource("torre.png")).getImage());
+        
         //VENTANA DEL JUEGO
         this.setTitle("Torres de Hanoi | Configuración");
         this.setBounds(200,100,1000,550);

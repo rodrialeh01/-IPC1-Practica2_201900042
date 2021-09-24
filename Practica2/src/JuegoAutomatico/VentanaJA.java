@@ -10,6 +10,9 @@ public class VentanaJA extends JFrame implements ActionListener{
     
     //CONSTRUCTOR
     public VentanaJA(){
+        //ICONO DE LA APLICACION
+        setIconImage(new ImageIcon(getClass().getResource("torre.png")).getImage());
+        
         //VENTANA DEL JUEGO
         this.setTitle("Torres de Hanoi | Juego Automático");
         this.setBounds(200,100,1000,550);
