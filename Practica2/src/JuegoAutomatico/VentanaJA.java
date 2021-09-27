@@ -11,8 +11,10 @@ import javax.swing.*;
 
 public class VentanaJA extends JFrame implements ActionListener{
     Color fondoc = new Color(79,201,247);
-    TextArea ta;
-    JLabel titulo, ldisc, lcdisc, lmov, lcmov;
+    static TextArea ta;
+    static int contador = 0;
+    public static JLabel titulo, ldisc, lcdisc, lmov, lcmov;
+    public static int disc = 3;
     JButton biniciar, bregresar;
     
     //CONSTRUCTOR
@@ -32,7 +34,7 @@ public class VentanaJA extends JFrame implements ActionListener{
         this.add(ldisc);
         
         //LABEL DE CONTADOR DE DISCOS
-        lcdisc = new JLabel("3");
+        lcdisc = new JLabel(String.valueOf(disc));
         lcdisc.setFont(new Font("Century Gothic", Font.BOLD,20));
         lcdisc.setBounds(155,110,100,30);
         lcdisc.setVisible(true);
@@ -46,9 +48,9 @@ public class VentanaJA extends JFrame implements ActionListener{
         this.add(lmov);
         
         //LABEL DE CONTADOR DE MOVIMIENTOS
-        lcmov = new JLabel("000");
+        lcmov = new JLabel(String.valueOf(contador));
         lcmov.setFont(new Font("Century Gothic", Font.BOLD,20));
-        lcmov.setBounds(270, 110, 100, 30);
+        lcmov.setBounds(280, 110, 100, 30);
         lcmov.setVisible(true);
         this.add(lcmov);
         
@@ -56,6 +58,7 @@ public class VentanaJA extends JFrame implements ActionListener{
         ta = new TextArea();
         ta.setBounds(100, 150, 800, 250);
         ta.setVisible(true);
+        ta.setEditable(false);
         ta.setFont(new Font("Century Gothic", Font.PLAIN,15));
         this.add(ta);
         
@@ -97,8 +100,17 @@ public class VentanaJA extends JFrame implements ActionListener{
     //METODOS ABSTRACTOS
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if (ae.getSource()== bregresar) {
+        int discos = Integer.parseInt(lcdisc.getText()); 
+        Thread hilojuego = new Thread(new Juego(discos,1,2,3));
+        contador = 0;
+        if (ae.getSource() == biniciar) {
+            contador = 0;
+            ta.setText("");
+            hilojuego.start();         
+        }else if(ae.getSource() == bregresar) {
+            hilojuego.stop();
             Principal p = new Principal();
+            contador = 0;
             this.dispose();
         }
     }    

@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import JuegoAutomatico.VentanaJA;
 
 public class VentanaConfig extends JFrame implements ActionListener{
     Color fondoc = new Color(79,201,247);
@@ -93,6 +94,11 @@ public class VentanaConfig extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource()==salir) {
+            Principal p = new Principal();
+            this.dispose();
+        }else if (ae.getSource()==guardar) {
+            VentanaJA.disc = (int) cdiscos.getSelectedItem();
+            System.out.println(VentanaJA.disc);
             Principal p = new Principal();
             this.dispose();
         }
