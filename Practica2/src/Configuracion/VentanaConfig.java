@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import JuegoAutomatico.VentanaJA;
+import NuevoJuego.VentanaNJ;
 
 public class VentanaConfig extends JFrame implements ActionListener{
     Color fondoc = new Color(79,201,247);
@@ -37,6 +38,7 @@ public class VentanaConfig extends JFrame implements ActionListener{
         for (int i = 0; i < cantidad.length; i++) {
             cdiscos.addItem(cantidad[i]);
         }
+        cdiscos.setSelectedItem(VentanaJA.disc);
         cdiscos.setFont(new Font("Century Gothic", Font.PLAIN,15));
         cdiscos.setVisible(true);
         cdiscos.setBounds(100,200,350,30);
@@ -49,7 +51,7 @@ public class VentanaConfig extends JFrame implements ActionListener{
         this.add(ltiempo);
         
         //TEXTFIELD DEL TIEMPO
-        tftiempo = new JTextField();
+        tftiempo = new JTextField(String.valueOf(VentanaNJ.contador));
         tftiempo.setBounds(550,200,350,30);
         tftiempo.setVisible(true);
         tftiempo.setFont(new Font("Century Gothic", Font.PLAIN,15));
@@ -93,14 +95,24 @@ public class VentanaConfig extends JFrame implements ActionListener{
     //METODOS ABSTRACTOS
     @Override
     public void actionPerformed(ActionEvent ae) {
+        int time = Integer.parseInt(tftiempo.getText());
         if (ae.getSource()==salir) {
             Principal p = new Principal();
             this.dispose();
         }else if (ae.getSource()==guardar) {
-            VentanaJA.disc = (int) cdiscos.getSelectedItem();
-            System.out.println(VentanaJA.disc);
-            Principal p = new Principal();
-            this.dispose();
+            try {
+                if (time > 0) {
+                    VentanaJA.disc = (int) cdiscos.getSelectedItem();
+                    VentanaNJ.contador = time;
+                    JOptionPane.showMessageDialog(null, "Se guardarón los cambios exitosamente");
+                    Principal p = new Principal();
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ingrese un tiempo valido");
+                }
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Ingrese un tiempo valido");
+            }            
         }
     }    
 }

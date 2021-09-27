@@ -10,8 +10,10 @@ import javax.swing.*;
 
 public class VentanaNJ extends JFrame implements ActionListener{
     Color fondoc = new Color(79,201,247);
-    JLabel ltiempo, lmov, lctiempo, lcmov, lposte1, lposte2, lposte3;
-    JButton i1, d1, i2, d2, i3, d3, bsalir;
+    public static JLabel ltiempo, lmov, lctiempo, lcmov, lposte1, lposte2, lposte3;
+    JButton i1, d1, i2, d2, i3, d3;
+    public static JButton bsalir;
+    public static int contador = 120;
     //CONSTRUCTOR
     public VentanaNJ(){
         //LABEL DE TIEMPO
@@ -22,7 +24,9 @@ public class VentanaNJ extends JFrame implements ActionListener{
         this.add(ltiempo);
         
         //LABEL DE CONTADOR DE MOVIMIENTOS
-        lctiempo = new JLabel("120");
+        Tiempo t = new Tiempo(contador, this);
+        t.start();
+        lctiempo = new JLabel(String.valueOf(contador));
         lctiempo.setFont(new Font("Century Gothic", Font.BOLD,20));
         lctiempo.setBounds(65, 50, 100, 30);
         lctiempo.setVisible(true);
@@ -166,5 +170,13 @@ public class VentanaNJ extends JFrame implements ActionListener{
             Principal p = new Principal();
             this.dispose();
         }
-    }    
+    }
+
+    public void failtiempo(){
+        if (contador == 0) {
+            JOptionPane.showMessageDialog(null, "Se terminó el tiempo");
+            Principal pr = new Principal();
+            this.dispose();
+        }
+    }
 }

@@ -1,5 +1,7 @@
 package JuegoAutomatico;
 
+//==========LIBRERIAS==============
+//THREAD
 import static java.lang.Thread.sleep;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,15 +29,14 @@ public class Juego implements Runnable{
             }
     }
     
+    //METODO RECURSIVO DE LA SOLUCIÓN DEL ALGORITMO DE LAS TORRES DE HANOI
     public void hanoi(int n, int i, int f, int a) throws InterruptedException{
         if (n == 1) {
-            System.out.println("Se movió el disco #" + n + " del poste " + i + " al poste " + f);
             VentanaJA.ta.append("Se movió el disco #" + n + " del poste #" + i + " al poste #" + f + "\n");
             VentanaJA.lcmov.setText(String.valueOf(VentanaJA.contador=VentanaJA.contador+1));
             sleep(1000);
         }else{
             hanoi(n-1,i,a,f);
-            System.out.println("Se movió el disco #" + n + " del poste " + i + " al poste " + f);
             VentanaJA.ta.append("Se movió el disco #" + n + " del poste #" + i + " al poste #" + f + "\n");
             VentanaJA.lcmov.setText(String.valueOf(VentanaJA.contador=VentanaJA.contador+1));
             sleep(1000);

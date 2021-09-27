@@ -109,8 +109,8 @@ public class VentanaJA extends JFrame implements ActionListener{
             hilojuego.start();         
         }else if(ae.getSource() == bregresar) {
             hilojuego.stop();
-            Principal p = new Principal();
             contador = 0;
+            Principal p = new Principal();            
             this.dispose();
         }
     }    
