@@ -1,6 +1,7 @@
 package NuevoJuego;
 
 import Principal.Principal;
+import practica2.Practica2;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -442,7 +443,9 @@ public class VentanaNJ extends JFrame implements ActionListener{
     //PANTALLA DE WIN
     public void ganador() {
         t.detener();
-        JOptionPane.showMessageDialog(null, "¡HAS GANADO!" + "\n" + "Tiempo: " + lctiempo.getText() + "\n" + "Movimientos: " + lcmov.getText());
+        String nombre = JOptionPane.showInputDialog(null, "¡HAS GANADO!" + "\n" + "Tiempo: " + lctiempo.getText() + "\n" + "Movimientos: " + lcmov.getText() + "\n" + "Anota tu nombre :D");
+        Jugador nuevo = new Jugador(nombre,Integer.parseInt(lctiempo.getText()),Integer.parseInt(lcmov.getText()));
+        Practica2.AgregarJugador(nuevo);
         Principal pr = new Principal();
         this.dispose();
     }
