@@ -14,6 +14,8 @@ public class VentanaNJ extends JFrame implements ActionListener{
     JButton i1, d1, i2, d2, i3, d3;
     public static JButton bsalir;
     public static int contador = 120;
+    public static int cdiscos = 3;
+    JButton[] disco = new JButton[cdiscos];
     public Tiempo t = new Tiempo(contador, this);
     //CONSTRUCTOR
     public VentanaNJ(){
@@ -44,6 +46,8 @@ public class VentanaNJ extends JFrame implements ActionListener{
         lcmov.setBounds(190, 50, 100, 30);
         lcmov.setVisible(true);
         this.add(lcmov);
+        
+        Discos();
         
         //LABEL DE LA IMAGEN DEL POSTE 1
         Image imgep1 = new ImageIcon("Imagenes/poste.png").getImage();
@@ -160,6 +164,31 @@ public class VentanaNJ extends JFrame implements ActionListener{
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
+    }
+    
+    //DISCOS
+    public void Discos(){
+        for (int i = 0; i < disco.length; i++) {
+            disco[i] = new JButton("" + (i+1));
+            disco[i].setVisible(true);
+            disco[i].setBounds((175-(20*i)), (380-(30*(disco.length-i-1))), (50 + (40*i)), 30);
+            disco[i].setEnabled(false);
+            disco[i].setBorderPainted(false);
+            disco[i].setForeground(Color.BLACK);
+            this.add(disco[i]);
+        }
+        //PONERLE COLOR A CADA BOTON:
+        try {
+            disco[0].setBackground(Color.RED);
+            disco[1].setBackground(Color.BLUE);
+            disco[2].setBackground(Color.YELLOW);
+            disco[3].setBackground(Color.CYAN);
+            disco[4].setBackground(Color.MAGENTA);
+            disco[5].setBackground(Color.ORANGE);
+            disco[6].setBackground(Color.PINK);
+        } catch (Exception e) {
+
+        }
     }
     
     //METODOS ABSTRACTOS

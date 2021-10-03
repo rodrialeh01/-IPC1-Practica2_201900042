@@ -104,6 +104,7 @@ public class VentanaConfig extends JFrame implements ActionListener{
                 if (time > 0) {
                     VentanaJA.disc = (int) cdiscos.getSelectedItem();
                     VentanaNJ.contador = time;
+                    VentanaNJ.cdiscos = (int) cdiscos.getSelectedItem();
                     JOptionPane.showMessageDialog(null, "Se guardarón los cambios exitosamente");
                     Principal p = new Principal();
                     this.dispose();
