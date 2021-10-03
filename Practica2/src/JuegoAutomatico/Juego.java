@@ -50,7 +50,7 @@ public class Juego extends Thread{
         estadoj = false;
     }
     public static void reiniciar(){
-        estadoj = true;
-    }
+        estadoj = true; 
+   }
 }
 

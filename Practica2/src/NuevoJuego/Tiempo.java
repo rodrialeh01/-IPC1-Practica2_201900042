@@ -25,8 +25,8 @@ public class Tiempo extends Thread{
                     VentanaNJ.lctiempo.setText(String.valueOf(this.segundos));
                     this.segundos--;
                     if (this.segundos < 0) {
-                        JOptionPane.showMessageDialog(null, "TIEMPO FINALIZADO");
-                        Principal p = new Principal();
+                        JOptionPane.showMessageDialog(null, "!FAIL! Se terminó el tiempo D:");
+                        Principal pr = new Principal();
                         this.ventana.dispose();
                     }
                 } catch (InterruptedException ex) {
