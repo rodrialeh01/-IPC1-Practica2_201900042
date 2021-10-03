@@ -112,6 +112,9 @@ public class Principal extends JFrame implements ActionListener{
         if (ae.getSource()==bnuevoj) {
             VentanaNJ vnj = new VentanaNJ();
             this.dispose();
+            //INICIA EL HILO DEL CONTADOR DEL TIEMPO
+            vnj.t.start();
+            vnj.t.reiniciar();
         }
         //BOTON JUEGO AUTOMÁTICO
         else if (ae.getSource()==bjuegoa) {

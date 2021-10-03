@@ -14,6 +14,7 @@ public class VentanaNJ extends JFrame implements ActionListener{
     JButton i1, d1, i2, d2, i3, d3;
     public static JButton bsalir;
     public static int contador = 120;
+    public Tiempo t = new Tiempo(contador, this);
     //CONSTRUCTOR
     public VentanaNJ(){
         //LABEL DE TIEMPO
@@ -24,8 +25,6 @@ public class VentanaNJ extends JFrame implements ActionListener{
         this.add(ltiempo);
         
         //LABEL DE CONTADOR DE MOVIMIENTOS
-        Tiempo t = new Tiempo(contador, this);
-        t.start();
         lctiempo = new JLabel(String.valueOf(contador));
         lctiempo.setFont(new Font("Century Gothic", Font.BOLD,20));
         lctiempo.setBounds(65, 50, 100, 30);
@@ -168,6 +167,7 @@ public class VentanaNJ extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource()== bsalir) {
             Principal p = new Principal();
+            t.detener();
             this.dispose();
         }
     }

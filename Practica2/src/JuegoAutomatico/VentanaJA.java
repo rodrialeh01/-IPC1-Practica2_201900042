@@ -101,15 +101,16 @@ public class VentanaJA extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent ae) {
         int discos = Integer.parseInt(lcdisc.getText()); 
-        Thread hilojuego = new Thread(new Juego(discos,1,2,3));
+        Juego j = new Juego(discos,1,2,3);
         contador = 0;
         if (ae.getSource() == biniciar) {
             contador = 0;
             ta.setText("");
-            hilojuego.start();         
+            j.start();
+            j.reiniciar();
         }else if(ae.getSource() == bregresar) {
-            hilojuego.stop();
             contador = 0;
+            j.detener();
             Principal p = new Principal();            
             this.dispose();
         }
