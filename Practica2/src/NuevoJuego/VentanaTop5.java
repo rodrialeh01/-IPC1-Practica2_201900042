@@ -165,6 +165,7 @@ public class VentanaTop5 extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource()== bsalir) {
             Principal p = new Principal();
+            this.dispose();
         }
     }
     
