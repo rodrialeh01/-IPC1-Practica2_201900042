@@ -177,7 +177,7 @@ public class VentanaNJ extends JFrame implements ActionListener{
             disco[i] = new JButton("" + (i+1));
             disco[i].setVisible(true);
             disco[i].setBounds((175-(20*i)), (380-(30*(disco.length-i-1))), (50 + (40*i)), 30);
-            disco[i].setEnabled(false);
+            disco[i].setBorder(null);
             disco[i].setBorderPainted(false);
             disco[i].setForeground(Color.BLACK);
             this.add(disco[i]);
@@ -185,10 +185,13 @@ public class VentanaNJ extends JFrame implements ActionListener{
         //PONERLE COLOR A CADA BOTON:
         try {
             disco[0].setBackground(Color.RED);
+            disco[0].setForeground(Color.WHITE);
             disco[1].setBackground(Color.BLUE);
+            disco[1].setForeground(Color.WHITE);
             disco[2].setBackground(Color.YELLOW);
             disco[3].setBackground(Color.CYAN);
             disco[4].setBackground(Color.MAGENTA);
+            disco[4].setForeground(Color.WHITE);
             disco[5].setBackground(Color.ORANGE);
             disco[6].setBackground(Color.PINK);
         } catch (Exception e) {
@@ -206,31 +209,53 @@ public class VentanaNJ extends JFrame implements ActionListener{
         }else if (ae.getSource()==d1) {
             if (cdiscos == 3) {
                 Derecha31();
-            }            
+            }else if (cdiscos == 4) {
+                Derecha41();
+            }
+            
         }else if (ae.getSource()==i1) {
             if (cdiscos == 3) {
                 Izquierda31();
+            }else if (cdiscos == 4) {
+                Izquierda41();
             }
         }else if (ae.getSource()==d2) {
             if (cdiscos == 3) {
                 Derecha32();
-            }   
+            }else if (cdiscos == 4) {
+                Derecha42();
+            }
+   
         }else if(ae.getSource()==i2){
             if (cdiscos == 3) {
                 Izquierda32();
-            } 
+            }else if (cdiscos == 4) {
+                Izquierda42();
+            }
+ 
         }else if (ae.getSource()==i3) {
             if (cdiscos == 3) {
                 Izquierda33();
-            } 
+            }else if (cdiscos == 4) {
+                Izquierda43();
+            }
         }else if (ae.getSource()==d3) {
             if (cdiscos == 3) {
                 Derecha33();
+            }else if (cdiscos == 4) {
+                Derecha43();
             }
         }
-        if (disco[0].getX() == 775 && disco[0].getY() == 320 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380) {
-            ganador();
+        if (cdiscos == 3) {
+            if (disco[0].getX() == 775 && disco[0].getY() == 320 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380) {
+                ganador();
+            }
+        } else if (cdiscos == 4) {
+            if (disco[0].getX() == 775 && disco[0].getY() == 290 && disco[1].getX() == 755 && disco[1].getY() == 320 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+                ganador();
+            }
         }
+      
     }
     
     //PANTALLA DE WIN
@@ -242,6 +267,8 @@ public class VentanaNJ extends JFrame implements ActionListener{
         Principal pr = new Principal();
         this.dispose();
     }
+    
+    //================================================= METODOS DE MOVIMIENTO =================================================
     
     //============================================== MOVIMIENTOS DE LOS 3 DISCOS ==============================================
     
@@ -294,6 +321,16 @@ public class VentanaNJ extends JFrame implements ActionListener{
             this.repaint();
         } else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 380) {
             disco[1].setBounds(755, 380, 90, 30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        } else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 380) {
+            disco[0].setBounds(775, 380, 50, 30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        } else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 380) {
+            disco[0].setBounds(775, 350, 50, 30);
             movimientos += 1;
             lcmov.setText(String.valueOf(movimientos));
             this.repaint();
@@ -629,6 +666,1218 @@ public class VentanaNJ extends JFrame implements ActionListener{
             this.repaint();
         } else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380) {
             disco[0].setBounds(175, 380, 50, 30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        } else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 380) {
+            disco[0].setBounds(175, 350, 50, 30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }
+    }
+    
+    //============================================== MOVIMIENTOS DE LOS 4 DISCOS ==============================================
+    
+    //MOVIMIENTOS BOTON IZQUIERDO PALO 1
+    public void Izquierda41(){
+        if (disco[0].getX() == 175 && disco[0].getY() == 290 && disco[1].getX() == 155 && disco[1].getY() == 320 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 320 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[1].setBounds(755,380,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[2].setBounds(735,380,130,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 320 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 320 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[1].setBounds(755,350,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 320 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[1].setBounds(755,380,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 320 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 320 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[3].setBounds(715,380,170,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 320 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[2].setBounds(735,380,130,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[1].setBounds(755,350,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 320 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 320 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[1].setBounds(755,380,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[2].setBounds(735,350,130,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 320 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[1].setBounds(755,380,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 320 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[1].setBounds(755,320,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 320 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,290,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }
+    }
+    
+    //MOVIMIENTOS BOTON DERECHO PALO 1
+    public void Derecha41(){
+        if (disco[0].getX() == 175 && disco[0].getY() == 290 && disco[1].getX() == 155 && disco[1].getY() == 320 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 320 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[1].setBounds(455,380,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[2].setBounds(435,380,130,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 320 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 320 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[1].setBounds(455,350,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 320 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 320 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[1].setBounds(455,380,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 320 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[3].setBounds(415,380,170,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[1].setBounds(455,350,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 320 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 320 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[1].setBounds(455,380,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[1].setBounds(455,350,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[2].setBounds(435,350,130,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 320 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,290,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[1].setBounds(455,320,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[1].setBounds(455,350,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 320 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 320 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[2].setBounds(435,380,130,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 320 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[1].setBounds(455,380,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }
+    }
+    
+    //MOVIMIENTOS BOTON IZQUIERDO PALO 2
+    public void Izquierda42(){
+        if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 320 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,290,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[1].setBounds(155,320,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[2].setBounds(135,350,130,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 320 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[1].setBounds(155,350,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[1].setBounds(155,350,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 320 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[3].setBounds(115,380,170,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 320 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 320 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[1].setBounds(155,350,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[1].setBounds(155,350,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[1].setBounds(155,380,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[2].setBounds(135,380,130,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 320 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 290 && disco[1].getX() == 455 && disco[1].getY() == 320 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 320 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 320 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[1].setBounds(155,380,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 320 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[1].setBounds(155,380,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 320 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 320 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[2].setBounds(135,380,130,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 320 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[1].setBounds(155,380,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }
+    }
+    
+    //MOVIMIENTOS BOTON DERECHO PALO 2
+    public void Derecha42(){
+        if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 320 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[1].setBounds(755,380,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 320 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[1].setBounds(755,350,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[1].setBounds(755,380,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 320 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 320 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[2].setBounds(735,380,130,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[1].setBounds(755,350,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 320 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 320 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 320 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[3].setBounds(715,380,170,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[1].setBounds(755,380,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 320 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[2].setBounds(735,380,130,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 320 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[1].setBounds(755,380,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 290 && disco[1].getX() == 455 && disco[1].getY() == 320 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 320 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 320 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[2].setBounds(735,350,130,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 320 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,290,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[1].setBounds(755,350,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(775,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[1].setBounds(755,320,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }
+    }
+    
+    //MOVIMIENTOS BOTON IZQUIERDO PALO 3
+    public void Izquierda43(){
+        if (disco[0].getX() == 175 && disco[0].getY() == 320 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[1].setBounds(455,380,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 320 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[1].setBounds(455,380,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 320 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[1].setBounds(455,350,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 320 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[2].setBounds(435,380,130,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 320 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[1].setBounds(455,350,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 320 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[3].setBounds(415,380,170,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[1].setBounds(455,350,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 320 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[2].setBounds(435,350,130,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[1].setBounds(455,320,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 320 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,290,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[2].setBounds(435,380,130,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 320 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[1].setBounds(455,350,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 320 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 320 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(475,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 175 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 320 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[1].setBounds(455,380,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }
+    }
+    
+    //MOVIMIENTOS BOTON DERECHO PALO 3
+    public void Derecha43(){
+        if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 320 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,290,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[1].setBounds(155,320,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 350 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[2].setBounds(135,350,130,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 320 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[1].setBounds(155,350,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[1].setBounds(155,350,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 115 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 320 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[3].setBounds(115,380,170,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 320 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 320 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[2].setBounds(135,380,130,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[1].setBounds(155,380,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,320,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[1].setBounds(155,350,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[2].setBounds(135,380,130,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 320 && disco[1].getX() == 455 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 320 && disco[1].getX() == 755 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[1].setBounds(155,380,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 455 && disco[1].getY() == 320 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 350 && disco[3].getX() == 415 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 455 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 350 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 320 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 320 && disco[2].getX() == 735 && disco[2].getY() == 350 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[1].setBounds(155,380,90,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 320 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 435 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,380,50,30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        }else if (disco[0].getX() == 775 && disco[0].getY() == 320 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 135 && disco[2].getY() == 380 && disco[3].getX() == 715 && disco[3].getY() == 380) {
+            disco[0].setBounds(175,350,50,30);
             movimientos += 1;
             lcmov.setText(String.valueOf(movimientos));
             this.repaint();
