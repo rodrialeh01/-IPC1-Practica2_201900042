@@ -7,12 +7,14 @@ public class Jugador implements Serializable{
     private String nombre;
     private int tiempo;
     private int movimientos;
+    private int discos;
     
     //CONSTRUCTOR
-    public Jugador(String nombre, int tiempo, int movimientos) {
+    public Jugador(String nombre, int tiempo, int movimientos, int discos) {
         this.nombre = nombre;
         this.tiempo = tiempo;
         this.movimientos = movimientos;
+        this.discos = discos;
     }
     
     //METODO PARA MOSTRAR LOS OBJETOS
@@ -20,6 +22,7 @@ public class Jugador implements Serializable{
         System.out.println("===================================");
         System.out.println("==            JUGADORES          ==");
         System.out.println("Nombre: " + nombre);
+        System.out.println("Modalidad: " + discos + " discos");
         System.out.println("Movimientos: " + movimientos);
         System.out.println("Tiempo: " + tiempo);
     }
@@ -65,5 +68,19 @@ public class Jugador implements Serializable{
      */
     public void setMovimientos(int movimientos) {
         this.movimientos = movimientos;
+    }
+    
+    /**
+     * @return the discos
+     */
+    public int getDiscos() {
+        return discos;
+    }
+
+    /**
+     * @param discos the discos to set
+     */
+    public void setDiscos(int discos) {
+        this.discos = discos;
     }
 }
