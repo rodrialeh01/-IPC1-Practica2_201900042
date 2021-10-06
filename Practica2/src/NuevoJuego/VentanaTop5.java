@@ -1,13 +1,17 @@
 package NuevoJuego;
 
-import Principal.Principal;
-import practica2.Practica2;
+//============ LIBRERIAS ===========
+//AWT-SWING
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+
+//============ PAQUETES ============
+import Principal.Principal;
+import practica2.Practica2;
 
 public class VentanaTop5 extends JFrame implements ActionListener{
    Color fondoc = new Color(79,201,247);
@@ -134,9 +138,10 @@ public class VentanaTop5 extends JFrame implements ActionListener{
             mov5.setFont(new Font("Century Gothic", Font.BOLD, 30));
             mov5.setVisible(true);
             this.add(mov5);
-        } catch (Exception e) {
-            
+        } catch (Exception e) {            
         }
+        
+        //BOTON SALIR
         Image imgeexit = new ImageIcon("Imagenes/Boton5.png").getImage();
         ImageIcon pex = new ImageIcon(imgeexit.getScaledInstance(140, 40, Image.SCALE_SMOOTH));
         bsalir = new JButton(pex);

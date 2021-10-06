@@ -1,12 +1,16 @@
 package Configuracion;
 
-import Principal.Principal;
+//==========LIBRERIAS==============
+//AWT-SWING
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+
+//============ PAQUETES ============
+import Principal.Principal;
 import JuegoAutomatico.VentanaJA;
 import NuevoJuego.VentanaNJ;
 

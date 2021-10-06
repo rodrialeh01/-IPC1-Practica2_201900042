@@ -1,11 +1,14 @@
 package Principal;
 
+//============ LIBRERIAS ===========
+//AWT-SWING
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+//============ PAQUETES ============
 import NuevoJuego.*;
 import JuegoAutomatico.VentanaJA;
 import Configuracion.VentanaConfig;
@@ -57,7 +60,7 @@ public class Principal extends JFrame implements ActionListener{
         bconfig.addActionListener(this);
         this.add(bconfig);
         
-        //BOTON CONFIGURACION
+        //BOTON SALIR
         Image imgeb5 = new ImageIcon("Imagenes/Boton5.png").getImage();
         ImageIcon ib5 = new ImageIcon(imgeb5.getScaledInstance(140, 40, Image.SCALE_SMOOTH));
         bsalir = new JButton(ib5);

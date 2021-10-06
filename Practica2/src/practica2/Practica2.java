@@ -1,17 +1,24 @@
 package practica2;
-import NuevoJuego.Jugador;
-import Principal.Principal;
+
+//============ LIBRERIAS ===========
+//IO
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+//============ PAQUETES ============
+import NuevoJuego.Jugador;
+import Principal.Principal;
+
 public class Practica2 {
+    //VARIABLES ESTATICAS GLOBALES
     public static Jugador[] jugadores;
     public static int cjugadores = CantidadJugadores();
     static ObjectInputStream oiss,oisp,oisc,oisv,oisve;
     static ObjectOutputStream ooss,oosp,oosc,oosv,oosve;
     
+    //METODO PARA AGREGAR UN JUGADOR AL ARREGLO
     public static void AgregarJugador(Jugador jugador){
         if (cjugadores < jugadores.length) {
             jugadores[cjugadores] = jugador;
@@ -19,7 +26,7 @@ public class Practica2 {
         }
         EscribirJugadores(jugadores);
     }
-    //METODO PARA MOSTRAR LOS SUCURSALES
+    //METODO PARA MOSTRAR LOS JUGADORES EN CONSOLA
     public static void LeerJugadores(){
         System.out.println("=====================================");
         System.out.println("==      LISTADO DE JUGADORES       ==");
@@ -29,10 +36,11 @@ public class Practica2 {
             }            
         }
         if (jugadores == null) {
-            System.out.println("NO HAY SUCURSALES");
+            System.out.println("NO HAY JUGADORES");
         }
     }
-
+    
+    //METODO PARA EL ORDENAMIENTO DE LOS JUGADORES DE MENOR MOVIMIENTO A MAYOR MOVIMIENTO
     public static void ordenamientoJugadores(Jugador[] player){
         try {
             for (int i = 1; i < player.length; i++){ 
@@ -48,7 +56,7 @@ public class Practica2 {
         }
     }
     
-    //METODO PARA CREAR EL ARCHIVO BINARIO PARA LA SERIALIZACION DE LOS PRODUCTOS
+    //METODO PARA CREAR EL ARCHIVO BINARIO PARA LA SERIALIZACION DE LOS JUGADORES
     public static void EscribirJugadores(Object objectp){
         try{
             oosp = new ObjectOutputStream(new FileOutputStream("Serializados/Jugadores.bin"));
@@ -59,7 +67,7 @@ public class Practica2 {
         }
     }
     
-    //METODO PARA ABRIR EL ARCHIVO BINARIO SERIALIZADO DONDE SE GUARDO LOS PRODUCTOS
+    //METODO PARA ABRIR EL ARCHIVO BINARIO SERIALIZADO DONDE SE GUARDO LOS JUGADORES
     public static Object CargarJugadores(){
         Object object;
         try{
@@ -73,7 +81,7 @@ public class Practica2 {
         return null;
     }
     
-    //RETORNAR LA CANTIDAD DE CLIENTES QUE HAY
+    //RETORNAR LA CANTIDAD DE JUGADORES QUE HAY
     public static int CantidadJugadores(){
         int contador = 0;
         try {
@@ -88,6 +96,7 @@ public class Practica2 {
         return contador;
     } 
     
+    //METODO MAIN
     public static void main(String[] args) {        
         jugadores =(Jugador[]) CargarJugadores();
         if (jugadores == null) {

@@ -7,19 +7,24 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Juego extends Thread{
+    //ATRIBUTOS
     int discos;
     int poste_inicial;
     int poste_auxiliar;
     int poste_final;
-
+    
+    //CONSTRUCTOR
     public Juego(int discos, int poste_inicial,int poste_auxiliar, int poste_final) {
         this.discos = discos;
         this.poste_inicial = poste_inicial;
         this.poste_auxiliar = poste_auxiliar;
         this.poste_final = poste_final;
     }
+    
+    //VARIABLE GLOBAL PARA CONTROLAR EL HILO
     public static boolean estadoj = true;
     
+    //METODO RUN PARA EJECUTAR EL HILO
     @Override
     public void run() {
         if(estadoj){
@@ -46,9 +51,13 @@ public class Juego extends Thread{
             hanoi(n-1,a,f,i);
         }
     }
+    
+    //METODO PARA DETENER EL HILO
     public static void detener(){
         estadoj = false;
     }
+    
+    //METODO PARA INICIAR EL HILO DE NUEVO
     public static void reiniciar(){
         estadoj = true; 
    }

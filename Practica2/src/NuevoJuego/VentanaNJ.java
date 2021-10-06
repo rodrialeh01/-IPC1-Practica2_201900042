@@ -1,13 +1,17 @@
 package NuevoJuego;
 
-import Principal.Principal;
-import practica2.Practica2;
+//============ LIBRERIAS ===========
+//AWT-SWING
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+
+//============ PAQUETES ============
+import Principal.Principal;
+import practica2.Practica2;
 
 public class VentanaNJ extends JFrame implements ActionListener{
     Color fondoc = new Color(79,201,247);
@@ -258,7 +262,7 @@ public class VentanaNJ extends JFrame implements ActionListener{
       
     }
     
-    //PANTALLA DE WIN
+    //PANTALLA DE GANADOR 
     public void ganador() {
         t.detener();
         String nombre = JOptionPane.showInputDialog(null, "¡HAS GANADO EN EL MODO DE JUEGO DE "+ cdiscos + " DISCOS! :D" + "\n" + "Tiempo: " + lctiempo.getText() + "\n" + "Movimientos: " + lcmov.getText() + "\n" + "Anota tu nombre :D");

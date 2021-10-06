@@ -1,5 +1,7 @@
 package NuevoJuego;
 
+//============ LIBRERIAS ===========
+//IO
 import java.io.Serializable;
 
 public class Jugador implements Serializable{
