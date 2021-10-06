@@ -261,7 +261,7 @@ public class VentanaNJ extends JFrame implements ActionListener{
     //PANTALLA DE WIN
     public void ganador() {
         t.detener();
-        String nombre = JOptionPane.showInputDialog(null, "¡HAS GANADO!" + "\n" + "Tiempo: " + lctiempo.getText() + "\n" + "Movimientos: " + lcmov.getText() + "\n" + "Anota tu nombre :D");
+        String nombre = JOptionPane.showInputDialog(null, "¡HAS GANADO EN EL MODO DE JUEGO DE "+ cdiscos + " DISCOS! :D" + "\n" + "Tiempo: " + lctiempo.getText() + "\n" + "Movimientos: " + lcmov.getText() + "\n" + "Anota tu nombre :D");
         Jugador nuevo = new Jugador(nombre,Integer.parseInt(lctiempo.getText()),Integer.parseInt(lcmov.getText()));
         Practica2.AgregarJugador(nuevo);
         Principal pr = new Principal();

@@ -110,6 +110,7 @@ public class Principal extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent ae) {
         //BOTÓN JUEGO NUEVO
         if (ae.getSource()==bnuevoj) {
+            JOptionPane.showMessageDialog(null, "REGLAS: \n 1. Puedes mover solamente un disco a la vez.  \n 2. Ningún disco puede estar encima de un disco más pequeño. \n ¡DISFRUTA EL JUEGO! :D");
             VentanaNJ vnj = new VentanaNJ();
             this.dispose();
             //INICIA EL HILO DEL CONTADOR DEL TIEMPO
