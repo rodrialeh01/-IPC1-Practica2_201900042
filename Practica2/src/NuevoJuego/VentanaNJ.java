@@ -338,6 +338,11 @@ public class VentanaNJ extends JFrame implements ActionListener{
             movimientos += 1;
             lcmov.setText(String.valueOf(movimientos));
             this.repaint();
+        } else if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 735 && disco[2].getY() == 380) {
+            disco[1].setBounds(755, 350, 90, 30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
         }
     }
     
@@ -675,6 +680,11 @@ public class VentanaNJ extends JFrame implements ActionListener{
             this.repaint();
         } else if (disco[0].getX() == 775 && disco[0].getY() == 380 && disco[1].getX() == 155 && disco[1].getY() == 380 && disco[2].getX() == 435 && disco[2].getY() == 380) {
             disco[0].setBounds(175, 350, 50, 30);
+            movimientos += 1;
+            lcmov.setText(String.valueOf(movimientos));
+            this.repaint();
+        } else if (disco[0].getX() == 475 && disco[0].getY() == 380 && disco[1].getX() == 755 && disco[1].getY() == 350 && disco[2].getX() == 735 && disco[2].getY() == 380) {
+            disco[1].setBounds(155, 380, 90, 30);
             movimientos += 1;
             lcmov.setText(String.valueOf(movimientos));
             this.repaint();
