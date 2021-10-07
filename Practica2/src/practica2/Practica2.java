@@ -15,8 +15,8 @@ public class Practica2 {
     //VARIABLES ESTATICAS GLOBALES
     public static Jugador[] jugadores;
     public static int cjugadores = CantidadJugadores();
-    static ObjectInputStream oiss,oisp,oisc,oisv,oisve;
-    static ObjectOutputStream ooss,oosp,oosc,oosv,oosve;
+    static ObjectInputStream oisp;
+    static ObjectOutputStream oosp;
     
     //METODO PARA AGREGAR UN JUGADOR AL ARREGLO
     public static void AgregarJugador(Jugador jugador){

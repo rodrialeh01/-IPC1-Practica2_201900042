@@ -259,7 +259,6 @@ public class VentanaNJ extends JFrame implements ActionListener{
                 ganador();
             }
         }
-      
     }
     
     //PANTALLA DE GANADOR 
